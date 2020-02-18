@@ -1,0 +1,5 @@
+al utilizar git chekout -- prueba2.txt después de modificar el texto
+conseguimos que se regresara a la versión que ya teniamos anteriormente 
+en el repositorio, como originalmente estaba en blanco, al usar checkou 
+borro los cambios del documento y regresó a estar en blco.
+
