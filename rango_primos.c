@@ -10,6 +10,31 @@ Salida: Imprime el valor de "i" si este es primo
 */
 
 #include <stdio.h>
-#include <primos.h>
-int N1, N2;
+int N1, N2,i;
+int j=2;
+int Es_primo();
 
+void main(){
+	printf("Ingrese el valor más pequeño del rango ");
+	scanf("%i",&N1);
+	printf("Ingrese el valor más grande del rango ");
+	scanf("%i",&N2);
+	i=N1;
+	while(i<=N2){
+		printf("%i\n",i);
+		++i;
+	}
+
+}
+
+int Es_primo(int a ){
+	int primo=1;
+	while(j<a && primo==1){
+		if(a%j==0){
+			primo=0;
+		}
+		++j;
+	}
+	j=2;
+	return primo;
+}
