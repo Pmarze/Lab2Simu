@@ -36,7 +36,6 @@ if [ $Extension = "c" ]; then							# la extensión sea .c, ponemos "c"  sin el 
 	echo */ >> $nombre_archivo
 	echo "" >> $nombre_archivo						##Espacio en blanco para separar encabezado del programa
 	echo "#include <stdio.h>" >> $nombre_archivo 				##Añadimos la libreria stdio a nuestro programa
-	echo "*/" >> $nombre_archivo
 else
 	exit
 fi
