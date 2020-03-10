@@ -20,7 +20,7 @@ if [ $Extension = "c" ]; then							# la extensión sea .c, ponemos "c"  sin el 
 										##Con el siguiente comando obtenemos solo el número de versión de GCC
 	echo "Compilador: $(gcc --version|head -n1 |cut -d" " -f4 )" >> $nombre_archivo
 	echo "Compilado: gcc $nombre_archivo -o $Nombre" >> $nombre_archivo	##Comentario de como compilar nuestro archivo en terminal
-	echo "Fecha: $date" >> $nombre_archivo					##Se añade la fecha al archivo
+	echo "Fecha: $(date)" >> $nombre_archivo					##Se añade la fecha al archivo
 	echo "Ingrese las librerias a utilizar"
 	read librerias								##Comando para ingresar datos desde la terminal
 	echo "librerias: stdio, $librerias" >> $nombre_archivo			##Añadimos las librerias  al archivo
