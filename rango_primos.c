@@ -10,9 +10,10 @@ Entrada:  Dos enteros N1,N2
 Salida: Imprime el valor de "i" si este es primo
 */
 
-#include <stdio.h>
-int N1, N2,i;				//Definimos variables N1,N2 para definir el rango a analizar
-int j=2;				//Valor de j=2 para analizar divisibilidad entre 2 hasta i
+#include <stdio.h>				//Utilizamos Unsigned int para poder analizar muchos más casos
+						//ya que sabemos que no habrá números negativos en el rango
+unsigned int N1, N2,i;				//Definimos variables N1,N2 para definir el rango a analizar
+unsigned int j=2;				//Valor de j=2 para analizar divisibilidad entre 2 hasta i
 int Es_primo();				//Definimos que el valor que regresa nuestra función es un entero
 
 void main(){
@@ -27,14 +28,14 @@ void main(){
 					//y por eso debemos seguir aplicando Es_primo, si no se cumple esta condicion
 					// el proceso termina
 		if(Es_primo(i)==1){	//Si Es_primo(i)=1 eso quiere decir que i es un número primo
-			printf("%i\n",i);//Al ser un número primo procedemos a imprimilo ne la terminal
+			printf("%i\n",i);//Al ser un número primo procedemos a imprimirlo en la terminal
 		}
 		++i;			//i puede ser primo o puede no serlo, en ambos casos sumamos uno a i para
 					//ver si i+1 es un número primo dentro del rango
 	}
 }
 
-int Es_primo(int a ){			//Definimos nuestra función para que al finalizar devuelva un entero
+int Es_primo(unsigned int a ){			//Definimos nuestra función para que al finalizar devuelva un entero
 	int primo=1;			//definimos el estado inicial de primo=1, este cambiará si un número divide a "a"
 	while(j<a && primo==1){		//estaremos haciendo iteraciones si y solo si j<a y primo=1
 		if(a%j==0){		//Si a es divisible por j el modulo a%j será cero y por lo tanto no es primo, 
