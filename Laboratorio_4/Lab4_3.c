@@ -1,7 +1,7 @@
 /*
 Autor: pmarze
 Compilador: 9.2.1
-Compilado: gcc Lab4_3.c -o Lab4_3
+Compilado: gcc Lab4_3.c -o Lab4_3 -lm  			//-lm hace un link con la libreria limb, si no se hace este no compila
 Fecha: mar mar 24 17:43:19 CST 2020
 librerias: stdio, math
 Resumen: Se solicita al usuario dos posiciones de coordenas,
@@ -16,10 +16,6 @@ Salida: Se imprime en terminal el resultado de los calculos solicitados
 #include <math.h>
 int A[3],ind;
 int B[3];
-int a_a,a_b;
-int b[3];
-int c;
-int d[3];
 void imprimir();
 void magn();
 void suma();
@@ -46,7 +42,7 @@ void main(){
 	magn(B);
 	suma(A,B);
 	pesca(A,B);
-
+	pcruz(A,B);
 
 
 
@@ -78,7 +74,16 @@ void pesca(int X[3],int Y[3]){
 	printf("Producto Escalar: ");
 	imprimir(prod);
 }
-
+void pcruz(int X[3],int Y[3]){
+	int cruz[3];
+	for(int x=0;x<3;x+=1){
+		int a=(1+x)%3;
+		int b=(2+x)%3;
+		cruz[x]=(X[a]*Y[b]-X[b]*Y[a]);
+	}
+	printf("Producto cruz: ");
+	imprimir(cruz);
+}
 
 void imprimir(int X[3]){
 	for(int x=0;x<3;x+=1){
