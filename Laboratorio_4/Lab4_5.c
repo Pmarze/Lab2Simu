@@ -18,7 +18,8 @@ long unsigned int fact();	// Función de tipo entero para poder multiplicarla
 void main(){			
 	printf("Ingrese un entero (n max=20) n= ");
 	scanf("%lu",&n);		// El número ingresado es almacenado en la variable n
-	printf("n!= ");		
+					// Utilizamos %lu por ser un long unsigned
+	printf("n!= ");				
 	printf("%lu",fact(n));	// Se imprime el resultado de la función factorial
 }
 
