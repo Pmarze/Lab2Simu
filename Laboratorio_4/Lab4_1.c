@@ -13,15 +13,14 @@ Salida: vector A
 
 #include <stdio.h>
 #include <string.h>
-
+#include <stdio_ext.h>
 int A[10];				// El tamaño del vector es 10 porque hay 10 pares en el rango [2,20]
 int t=sizeof(A)/sizeof(A[0]);		// Calculamos el tamaño del vector A
 int condicion=1;			// Si se ingresa un caracter inválido condicion es 1 para que solicite uno nuevo
-char B[10];				// En esta variable se guardan los caracteres que ingresa el usuario
-					// en la practica descubrimos que el tamaño 10 no limita el string que se ingresa
+char B[50];				// En esta variable se guardan los caracteres que ingresa el usuario
 void imprimir();			// Funcion para imprimir en orden ascendente
 void rimirpmi();			// Funcion para imprimir en orden descendente
-
+		
 void main(){
 	for(int x=0;x<10;x+=1){		// Utilizamos un ciclo for para generar nuestra lista de numeros pares	
 		A[x]=2+x*2;		// Un número par se escribe de la forma 2n, escribimos 2+2*n para empezar 
@@ -31,24 +30,22 @@ void main(){
 	while(condicion==1){		
 		printf("Escriba a para ver el vector de forma ascendente\n");
 		printf("Escriba d para ver el vector de forma descendente\n");
-		scanf("%s",B);			// Asignamos a B el la cadena que ingrese el usuario
+		scanf("%[^\n]",B);		// Asignamos a B el la cadena que ingrese el usuario, con este comando
+	       					// permitimos que acepte cualquier caracter excepto enter	
+		__fpurge(stdin);		// Limpiamos el Buffer de terminal para evitar errores
 		
 		long int longitud=strlen(B);	// Con strlen sabemos que tamaño tiene la cadena ingresada por el usuario
-
-		if(longitud==1){		// Solo se acepta la cadena "a*" o "b*", donde el signo asterisco
-		       				// lo utilizamos para indicar que a o b pueden ser precedidas por cualquier
-						// cantidad de espacios, aún así, esta cadena será aceptada por el programa
-	
+		if(longitud==1){		// Solo se acepta la cadena "a" o "b"	
 			if(B[0]=='a'){		// Si el caracter ingresado es a, este es aceptado y asignamos a condicion 
-			condicion=0; 		// el valor 0 para que ya no se solicite otro caracter,
-			imprimir(A);		// imprime de forma ascendente el vector A
+				condicion=0;	// el valor 0 para que ya no se solicite otro caracter,
+				imprimir(A);	// imprime de forma ascendente el vector A
 			}
 			else if(B[0]=='d'){	// Si el caracter ingresado es b, este es aceptado y asignamos a condicion
 				condicion=0;	// el valor 0 para que ya no solicite otro caracter
 				rimirpmi(A);	// imprime de forma descendente el vector A
 			}
 			else{			// Si no se cumple ninguna de las anteriores, notifica al usuario y 
-						// se mantiene en el ciclo while hasta que se ingrese un caracter aceptado
+						// se mantiene en el ciclo while hasta que se ingrese una cadena aceptada
 				printf("Caracter incorrecto \n");
 				printf("\n");
 			}
