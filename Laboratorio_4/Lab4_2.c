@@ -15,14 +15,17 @@ Salida: un vector ordenado
 #include <stdio.h>
 void imprimir();		// Definimos una función para imprimir los vectores
 void insercion();		// Funcion para ordenar, usamos el método de inserción
-int A[5],b;			// Vector donde se almacenan los 5 números dados por el usuario
-
+int A[5];			// Vector donde se almacenan los 5 números dados por el usuario
+int a,b,c,d,e;
 void main(){
-	printf("Ingrese su valor y luego presione enter  \n");
-	for(int x=0;x<5;x+=1){			// El ciclo se repite 5 veces para que se puedan ingresar los 5 números
-		scanf("%i",&b);			// Se lee de terminal un número y se asigna a la variable b
-		A[x]=b;				// Se asigna el valor de b a la posición x del vector A
-	}
+	printf("Ingrese 5 números separados por un espacio y presione enter \n");
+	scanf("%d%d%d%d%d",&a,&b,&c,&d,&e);	// Se lee de terminal un número y se asigna a la variable b
+	A[0]=a;				// Se asigna el valor de b a la posición x del vector A
+	A[1]=b;				// Se asigna el valor de b a la posición x del vector A
+	A[2]=c;				// Se asigna el valor de b a la posición x del vector A
+	A[3]=d;				// Se asigna el valor de b a la posición x del vector A
+	A[4]=e;				// Se asigna el valor de b a la posición x del vector A
+
 	insercion(A);				// Se ordena el vector A de menor a mayor
 	imprimir(A);				// Se imprime el vector A que ya está ordenado
 }

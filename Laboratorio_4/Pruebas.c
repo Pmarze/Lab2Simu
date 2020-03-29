@@ -12,12 +12,22 @@ Salida:
 #include <stdio.h>
 //#include <stdlib.h>
 #include <string.h>
+#define NDEBUG
+#include <assert.h>
+#include <math.h>
 char A[5];
 
 void main(){
-	scanf("%s",A);
+//Prueba strlen
+/*	scanf("%s",A);
 	long int longitud=strlen(A) ;
 	printf("Cadena A:  %s\n ",A);	
 	printf("Cadena A:  %c\n ",A[longitud-4]);	
 	printf("Tamaño cadena: %ld",longitud);
+*/
+	double x=-1;
+//	assert(x>=0);
+	printf("%f",sqrt(x));
+
 }
+
