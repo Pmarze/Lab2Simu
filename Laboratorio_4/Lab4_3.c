@@ -14,28 +14,29 @@ Salida: Se imprime en terminal el resultado de los calculos solicitados
 
 #include <stdio.h>
 #include <math.h>
-int A[3],ind;			// Creamos el vector A y una variable indice para almacenar datos
+int A[3];			// Creamos el vector A 
 int B[3];			// Creamos el vector B
 void imprimir();		// Definimos la función para imprimir vectores en pantalla
 void magn();			// Función aplicada sobre un vector que calcula la magnitud del vector ingresado
 void suma();			// Función aplicada sobre dos vectores que calcula la suma de los mismos
 void pesca();			// Función aplicada sobre dos vectores que calcula el producto escalar entre ambos
 void pcruz();			// FUnción aplicada sobre dos vectores que calcula el producto vectorial entre ambos
-
+int a,b,c;			// Utilizamos cada variable para asignar el valor de cada componente de los vectores
 void main(){
-	for(int x=0;x<3;x+=1){		// Se repite tres veces el ciclo para ingresar los 3 datos al vector A
-		scanf("%i",&ind);	// Se asigna el valor ingresado a la variable que usamos como indice
-		A[x]=ind;		// asignamos al indice del vector el valor de la variable ind
-	}
+	scanf("%d%d%d",&a,&b,&c);	// Se asigna el valor ingresado a la variable que usamos como indice
+	A[0]=a;
+	A[1]=b;
+	A[2]=c;
 	printf("Vector A: ");		// Mostramos el vector ingresado, para que el usuario conozca los valores ingresados
 	imprimir(A);		
 
-	for(int x=0;x<3;x+=1){		// Se repite tres veces el ciclo para ingresar los 3 datos al vector B
-		scanf("%i",&ind);	// Se asigna el valor ingresado a la variable que usamos como indice
-		B[x]=ind;
-	}
+	scanf("%d%d%d",&a,&b,&c);	// Se asigna el valor ingresado a la variable que usamos como indice
+	B[0]=a;
+	B[1]=b;
+	B[2]=c;
 	printf("Vector B: ");		// Mostramos el vector ingresado, para que el usuario conozca los valores ingresados
 	imprimir(B);
+			
 
 	printf("Magnitud de A: ");	
 	magn(A);			// Utilizamos la función magnitud
