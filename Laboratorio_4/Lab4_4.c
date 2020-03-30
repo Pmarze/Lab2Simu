@@ -21,14 +21,14 @@ Salida: 9 resultados
 #include <stdio.h>
 #include <stdio_ext.h>
 int cte;
-int a,b,c;
-int A[3][3];
-int B[3][3];
+float a,b,c;
+float A[3][3];
+float B[3][3];
 void mimp();
 void cons();
-void msumres();
+void msr();
 void mmult();
-void det();
+int det();
 void tran();
 
 
@@ -38,7 +38,7 @@ void main(){
 	__fpurge(stdin);
 	printf("Ingrese 9 números, Matriz A:\n");
 	for(int x=0;x<3;x+=1){
-		scanf("%d%d%d",&a,&b,&c);
+		scanf("%f%f%f",&a,&b,&c);
 		A[x][0]=a;
 		A[x][1]=b;
 		A[x][2]=c;
@@ -47,7 +47,7 @@ void main(){
 
 	printf("Ingrese 9 números, Matriz B:\n");
 	for(int x=0;x<3;x+=1){
-		scanf("%d%d%d",&a,&b,&c);
+		scanf("%f%f%f",&a,&b,&c);
 		B[x][0]=a;
 		B[x][1]=b;
 		B[x][2]=c;
@@ -64,24 +64,34 @@ void main(){
 	cons(A,cte);	
 
 	printf("Suma de A y B\n");
-	msumres(A,B,1);
+	msr(A,B,1);
 
 	printf("Resta de A y B\n");
-	msumres(A,B,-1);
+	msr(A,B,-1);
 
 	printf("Multiplicación de A y B\n");
 	mmult(A,B);
 
 	printf("Determinante de A\n");
-	det(A);
+	int DET=det(A);
+	printf("%d",DET);
 	printf("\n");
 	printf("\n");
+
 	printf("Transpuesta de B\n");
 	tran(B);
+
+	printf("Inversa de A\n");
+	if(DET==0){
+		printf("No tiene matriz inversa\n");
+	}
+	else{
+		printf("A calcular el pinche determinante :'(\n");
+	}
 }
 
-void cons(int X[3][3],int d){
-	int consA[3][3];
+void cons(float X[3][3],int d){
+	float consA[3][3];
 	for(int x=0;x<3;x+=1){
 		for(int y=0;y<3;y+=1){
 			consA[x][y]=d*X[x][y];
@@ -90,8 +100,8 @@ void cons(int X[3][3],int d){
 	mimp(consA);
 }
 
-void msumres(int X[3][3], int Y[3][3],int val){
-	int AB[3][3];
+void msr(float X[3][3], float Y[3][3],int val){
+	float AB[3][3];
 	for(int x=0;x<3;x+=1){
 		for(int y=0;y<3;y+=1){
 			AB[x][y]=X[x][y]+val*Y[x][y];
@@ -100,8 +110,8 @@ void msumres(int X[3][3], int Y[3][3],int val){
 	mimp(AB);
 }
 
-void mmult(int X[3][3], int Y[3][3]){
-	int AmB[3][3];
+void mmult(float X[3][3], float Y[3][3]){
+	float AmB[3][3];
 	for(int x=0;x<3;x+=1){
 		for(int y=0;y<3;y+=1){
 			AmB[x][y]=X[x][0]*Y[0][y]+X[x][1]*Y[1][y]+X[x][2]*Y[2][y];
@@ -110,18 +120,18 @@ void mmult(int X[3][3], int Y[3][3]){
 	mimp(AmB);
 }
 
-void det(int X[3][3]){
+int det(float X[3][3]){
 	int DET=0;
 	for(int x=0;x<3;x+=1){
 		int a=(1+x)%3;
 		int b=(2+x)%3;
 		DET=DET+X[0][x]*(X[1][a]*X[2][b]-X[1][b]*X[2][a]);
 	}
-	printf("%d",DET);
+	return DET;
 }
 
-void tran(int X[3][3]){
-	int T[3][3];
+void tran(float X[3][3]){
+	float T[3][3];
 	for(int x=0;x<3;x+=1){
 		for(int y=0;y<3;y+=1){
 			T[x][y]=X[y][x];
@@ -132,11 +142,11 @@ void tran(int X[3][3]){
 
 
 
-void mimp(int X[3][3]){
+void mimp(float X[3][3]){
 	for(int x=0;x<3;x+=1){
 		for(int y=0;y<3;y+=1){
-			int coord=X[x][y];
-			printf("%d  ",coord);
+			float coord=X[x][y];
+			printf("%f  ",coord);
 		}
 		printf("\n");
 	}
