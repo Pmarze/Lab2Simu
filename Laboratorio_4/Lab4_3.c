@@ -14,6 +14,7 @@ Salida: Se imprime en terminal el resultado de los calculos solicitados
 
 #include <stdio.h>
 #include <math.h>
+#include <stdio_ext.h>
 int A[3];			// Creamos el vector A 
 int B[3];			// Creamos el vector B
 void imprimir();		// Definimos la función para imprimir vectores en pantalla
@@ -23,14 +24,18 @@ void pesca();			// Función aplicada sobre dos vectores que calcula el producto 
 void pcruz();			// FUnción aplicada sobre dos vectores que calcula el producto vectorial entre ambos
 int a,b,c;			// Utilizamos cada variable para asignar el valor de cada componente de los vectores
 void main(){
+	printf("Ingrese 3 números, separados por espacio o \nsalto de línea para el vector A:  ");
 	scanf("%d%d%d",&a,&b,&c);	// Se asigna el valor ingresado a la variable que usamos como indice
+	__fpurge(stdin);		// Se limpia el buffer para evitar ingreso de datos errados
 	A[0]=a;
 	A[1]=b;
 	A[2]=c;
 	printf("Vector A: ");		// Mostramos el vector ingresado, para que el usuario conozca los valores ingresados
 	imprimir(A);		
 
+	printf("Ingrese 3 números, separados por espacio o \nsalto de línea para el vector B:  ");
 	scanf("%d%d%d",&a,&b,&c);	// Se asigna el valor ingresado a la variable que usamos como indice
+	__fpurge(stdin);		// Se limpia el buffer para evitar ingreso de datos errados
 	B[0]=a;
 	B[1]=b;
 	B[2]=c;

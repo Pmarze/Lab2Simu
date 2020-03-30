@@ -3,7 +3,7 @@ Autor: pmarze
 Compilador: 9.2.1
 Compilado: gcc Lab4_2.c -o Lab4_2
 Fecha: vie mar 20 13:09:16 CST 2020
-librerias: stdio
+librerias: stdio,stdio_ext
 Resumen: El programa solicita al usuario 5 números enteros,
 estos se almacenan en un vector. Este vector debe ordenar los
 elementos de forma ascendente y al terminar debe mostrar el
@@ -13,6 +13,8 @@ Salida: un vector ordenado
 */
 
 #include <stdio.h>
+#include <stdio_ext.h>
+
 void imprimir();		// Definimos una función para imprimir los vectores
 void insercion();		// Funcion para ordenar, usamos el método de inserción
 int A[5];			// Vector donde se almacenan los 5 números dados por el usuario
@@ -20,6 +22,7 @@ int a,b,c,d,e;
 void main(){
 	printf("Ingrese 5 números separados por un espacio y presione enter \n");
 	scanf("%d%d%d%d%d",&a,&b,&c,&d,&e);	// Se lee de terminal un número y se asigna a la variable b
+	__fpurge(stdin);		// Se limpia el buffer para evitar ingreso de datos errado
 	A[0]=a;				// Se asigna el valor de b a la posición x del vector A
 	A[1]=b;				// Se asigna el valor de b a la posición x del vector A
 	A[2]=c;				// Se asigna el valor de b a la posición x del vector A
