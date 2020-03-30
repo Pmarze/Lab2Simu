@@ -28,6 +28,9 @@ void mimp();
 void cons();
 void msumres();
 void mmult();
+void det();
+void tran();
+
 
 void main(){
 	printf("Ingrese el valor de cte= ");
@@ -68,6 +71,13 @@ void main(){
 
 	printf("Multiplicación de A y B\n");
 	mmult(A,B);
+
+	printf("Determinante de A\n");
+	det(A);
+	printf("\n");
+	printf("\n");
+	printf("Transpuesta de B\n");
+	tran(B);
 }
 
 void cons(int X[3][3],int d){
@@ -80,6 +90,16 @@ void cons(int X[3][3],int d){
 	mimp(consA);
 }
 
+void msumres(int X[3][3], int Y[3][3],int val){
+	int AB[3][3];
+	for(int x=0;x<3;x+=1){
+		for(int y=0;y<3;y+=1){
+			AB[x][y]=X[x][y]+val*Y[x][y];
+		}
+	}
+	mimp(AB);
+}
+
 void mmult(int X[3][3], int Y[3][3]){
 	int AmB[3][3];
 	for(int x=0;x<3;x+=1){
@@ -90,15 +110,27 @@ void mmult(int X[3][3], int Y[3][3]){
 	mimp(AmB);
 }
 
-void msumres(int X[3][3], int Y[3][3],int val){
-	int AB[3][3];
+void det(int X[3][3]){
+	int DET=0;
+	for(int x=0;x<3;x+=1){
+		int a=(1+x)%3;
+		int b=(2+x)%3;
+		DET=DET+X[0][x]*(X[1][a]*X[2][b]-X[1][b]*X[2][a]);
+	}
+	printf("%d",DET);
+}
+
+void tran(int X[3][3]){
+	int T[3][3];
 	for(int x=0;x<3;x+=1){
 		for(int y=0;y<3;y+=1){
-			AB[x][y]=X[x][y]+val*Y[x][y];
+			T[x][y]=X[y][x];
 		}
 	}
-	mimp(AB);
+	mimp(T);
 }
+
+
 
 void mimp(int X[3][3]){
 	for(int x=0;x<3;x+=1){
