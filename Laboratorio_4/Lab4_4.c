@@ -90,7 +90,7 @@ void main(){
 		printf("No tiene matriz inversa\n");	// utilizamos la condición de que el valor absoluto de
 	}						// DET, menos 0 sea menor que EPS, esto porque EPS representa
 	else{						// la cifra significativa más pequeña que vamos a trabajar
-		printf("Calculo de la matriz inversa"\n); // Si el determinante es distinto de cero, procedemos a
+		printf("Calculo de la matriz inversa\n"); // Si el determinante es distinto de cero, procedemos a
 	}						// calcular la matriz inversa
 	printf("\n");
 
@@ -170,9 +170,9 @@ void redg( float X[3][3]){			// Esta función tiene como parámetro una matriz
 }
 
 void rgajo(float X[3][3]){			// Esta función tiene como parámetro una matriz
-	float GJ[3][3];				// Definimos una matriz de trabajo dentro del entorno
+	float GJ[3][3]={{0,0,0},{0,0,0},{0,0,0}};	// Definimos una matriz de trabajo dentro del entorno
 	GJ[0][0]=(X[0][0]-X[0][1])*(X[0][0]-X[0][2]);	// La deducción de estas ecuaciones se explica
-	GJ[1][1]=X[1][1]-X[1][0];		// en la documentación del problema
+	GJ[1][1]=(X[1][1]-X[1][0])*(X[0][1]-X[0][2]);		// en la documentación del problema
 	GJ[2][2]=(X[1][1]-X[1][0])*(X[2][2]-X[2][1]);
 	mimp(GJ);				// Mostramos el resultado en pantalla
 }
