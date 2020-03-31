@@ -10,6 +10,7 @@ Salida: un entero
 */
 
 #include <stdio.h>
+#include <stdio_ext.h>
 long unsigned int n;		// Entero n al que se le calculará el factorial
 long unsigned int fact();	// Función de tipo entero para poder multiplicarla
 				// reiteradas veces, es de tipo long unsigned para poder 
@@ -19,8 +20,15 @@ void main(){
 	printf("Ingrese un entero (n max=20) n= ");
 	scanf("%lu",&n);		// El número ingresado es almacenado en la variable n
 					// Utilizamos %lu por ser un long unsigned
-	printf("n!= ");				
-	printf("%lu",fact(n));	// Se imprime el resultado de la función factorial
+	__fpurge(stdin);		// Limpiamos el buffer para evitar ingreso de datos erróneos
+	if(n>20){			// Si el número es mayor a 20 por limitaciones de memoria el 
+					// resultado es erróneo, por lo que no permitimos estos números
+		printf("Este número sobrepasa el límite establecido \n");
+	}
+	else{
+		printf("n!= ");				
+		printf("%lu \n",fact(n));	// Se imprime el resultado de la función factorial
+	}
 }
 
 long unsigned int fact(long unsigned int x){	// Función fact sobre un entero 
