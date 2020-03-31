@@ -3,7 +3,7 @@ Autor: pmarze
 Compilador: 9.2.1
 Compilado: gcc Lab4_3.c -o Lab4_3 -lm	//-lm hace un link con la libreria libm, sin este paso, el programa no compila
 Fecha: mar mar 24 17:43:19 CST 2020
-librerias: stdio, math
+librerias: stdio, math, stdio_ext
 Resumen: Se solicita al usuario dos posiciones de coordenas,
 estos dos vectores se almacenan y con ellos se procede a realizar el 
 calculo de: Magnitud de cada vector, Producto escalar, Suma de vectores 

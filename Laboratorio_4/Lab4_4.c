@@ -1,9 +1,9 @@
 /*
 Autor: pmarze
 Compilador: 9.2.1
-Compilado: gcc Lab4_4.c -o Lab4_4
+Compilado: gcc Lab4_4.c -o Lab4_4 -lm
 Fecha: dom mar 29 19:10:39 CST 2020
-librerias: stdio, 
+librerias: stdio, math, stdio_ext 
 Resumen: El programa recibe dos matrices de 3x3
 y también una constante, el programa realiza 
 las siguientes operaciones y muestra el resultado. 

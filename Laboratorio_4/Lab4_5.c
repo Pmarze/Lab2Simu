@@ -3,7 +3,7 @@ Autor: pmarze
 Compilador: 9.2.1
 Compilado: gcc Lab4_5.c -o Lab4_5
 Fecha: mié mar 25 20:58:35 CST 2020
-librerias: stdio, 
+librerias: stdio, stdio_ext 
 Resumen: Se ingresa un entero y el programa devuelve el factorial de ese número
 Entrada:  un entero
 Salida: un entero

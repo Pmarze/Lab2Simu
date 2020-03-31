@@ -3,7 +3,7 @@ Autor: pmarze
 Compilador: 9.2.1
 Compilado: gcc Lab4_1.c -o Lab4_1
 Fecha: jue mar 19 17:12:40 CST 2020
-librerias: stdio, string
+librerias: stdio, string, stdio_ext
 Resumen: Vector con números pares del 2 al 20, el programa muestra 
 los elementos en forma ascendente su se ingresa la letra "a" 
 y de forma descendente con la letra "d".
