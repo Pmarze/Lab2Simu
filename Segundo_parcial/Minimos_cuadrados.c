@@ -24,15 +24,34 @@ float b1();
 float b2();
 
 void main(){
-    int n;
-    float mr,br;
-    printf("Ingrese una altura de una persona: ");
-    scanf("%d",&n);
-    __fpurge(stdin);        // Se limpia el buffer para evitar ingreso de datos errados
-    mr=m(persona);
-    br=b1(persona)-mr*b2(persona);
-    printf("%.3f,%.3f \n", mr,br);
-    printf("El peso de la persona es: %.2f \n", mr*n+br);
+    FILE *pf;
+    char* nombre= "min_cuadrados";
+    char* modo= "wt";
+
+    if((pf=fopen(nombre,modo))==NULL){
+        puts("Problemas de escritura");
+    }
+//    else{
+        int n;
+        float mr,br;
+        printf("Ingrese una altura de una persona: ");
+    
+        scanf("%d",&n);
+        __fpurge(stdin);        // Se limpia el buffer para evitar ingreso de datos errados
+    
+    
+        mr=m(persona);
+        br=b1(persona)-mr*b2(persona);
+        int i=0;
+        
+        while(i<12){
+            fprintf(pf,"%.2f  %.2f \n",persona[i][0],persona[i][1]);
+            i++;
+        } 
+
+        printf("El peso de la persona es: %.2f \n", mr*n+br);
+ //   }
+    fclose(pf);
 }
 
 float m(float a[12][2]){
