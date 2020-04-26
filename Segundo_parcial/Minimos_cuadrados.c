@@ -17,11 +17,14 @@ Salida: El peso de esa persona
 #include <stdio_ext.h>
 #include <stdlib.h>
 
+float mr,br;
+
 //{Estatura (pulgadas) , Peso (libras)}
 float persona[12][2]={{70,155},{63,150},{72,180},{60,135},{66,156},{70,168},{74,178},{65,160},{62,132},{67,145},{65,139},{68,152}};
 float m();
 float b1();
 float b2();
+
 
 void main(){
     FILE *pf;
@@ -31,27 +34,35 @@ void main(){
     if((pf=fopen(nombre,modo))==NULL){
         puts("Problemas de escritura");
     }
-//    else{
+    else{
         int n;
-        float mr,br;
         printf("Ingrese una altura de una persona: ");
     
         scanf("%d",&n);
-        __fpurge(stdin);        // Se limpia el buffer para evitar ingreso de datos errados
-    
+        __fpurge(stdin);        // Se limpia el buffer para evitar ingreso de datos errados 
     
         mr=m(persona);
         br=b1(persona)-mr*b2(persona);
+  
         int i=0;
-        
-        while(i<12){
+        while(i<12){    
             fprintf(pf,"%.2f  %.2f \n",persona[i][0],persona[i][1]);
             i++;
         } 
 
         printf("El peso de la persona es: %.2f \n", mr*n+br);
- //   }
+    }
     fclose(pf);
+    
+    FILE *p = popen("gnuplot","w");
+    fprintf(p,"reset \n");
+    fprintf(p,"set title 'Minimos cuadrados' \n");
+    fprintf(p,"set xlabel 'Estatura'\n");
+    fprintf(p,"set ylabel 'Peso' \n");
+    fprintf(p,"set xrange [55:80] \n");
+    fprintf(p,"set yrange [120:200] \n");
+    fprintf(p,"plot %f*x+(%f), 'min_cuadrados' \n",mr,br);
+    pclose(p);
 }
 
 float m(float a[12][2]){
