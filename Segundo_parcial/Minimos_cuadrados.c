@@ -15,22 +15,24 @@ Salida: El peso de esa persona
 #include <stdio.h>
 #include <math.h>
 #include <stdio_ext.h>
+#include <stdlib.h>
+
 //{Estatura (pulgadas) , Peso (libras)}
 float persona[12][2]={{70,155},{63,150},{72,180},{60,135},{66,156},{70,168},{74,178},{65,160},{62,132},{67,145},{65,139},{68,152}};
 float m();
-float b();
-
+float b1();
+float b2();
 
 void main(){
     int n;
-    float pend,con;
+    float mr,br;
     printf("Ingrese una altura de una persona: ");
     scanf("%d",&n);
     __fpurge(stdin);        // Se limpia el buffer para evitar ingreso de datos errados
-    pend=m(persona);
-    con=b(persona);
-    printf("%f,%f \n",pend,con);
-
+    mr=m(persona);
+    br=b1(persona)-mr*b2(persona);
+    printf("%.3f,%.3f \n", mr,br);
+    printf("El peso de la persona es: %.2f \n", mr*n+br);
 }
 
 float m(float a[12][2]){
@@ -44,11 +46,17 @@ float m(float a[12][2]){
     return (12*m1-(m2*m3))/(12*m4-pow(m2,2));
 }
 
-float b(float a[12][2]){
-    float b1=0, b2=0;
+float b1(float a[12][2]){
+    float b1=0;
     for (int i=0;i<12;i++){
         b1+=a[i][1];
-        b2+=a[i][0];
     }
-    return (b1-3.2156*b2)/12;
+    return b1/12;
+}
+float b2(float a[12][2]){
+    float b1=0;
+    for (int i=0;i<12;i++){
+        b1+=a[i][0];
+    }
+    return b1/12;
 }
