@@ -46,7 +46,7 @@ void main(){
     }
     else{				
         float n;			// Definimos n como la altura a analizar
-        printf("Ingrese una altura de una persona: ");
+        printf("Ingrese una altura de una persona (m): ");
     
         scanf("%f",&n);			// Se lee el número ingresado por el usuario
         __fpurge(stdin); 	        // Se limpia el buffer para evitar ingreso de datos errados 
@@ -60,7 +60,7 @@ void main(){
             i++;			// El ciclo debe repetirse 12 veces, i+1 para que el ciclo avance
         } 
 
-        printf("El peso de la persona es: ");	// Se muestra en pantalla el peso correspondiente a la altura
+        printf("El peso de la persona es (lb): ");	// Se muestra en pantalla el peso correspondiente a la altura
 	printf("%.2f \n",mr*n+br);		// ingresada por el usuario
     }
     fclose(pf);				// Se cierra el archivo min_cuadrados
@@ -77,10 +77,12 @@ void main(){
     fprintf(p,"set output 'minimos.png' \n");   // Guardamos la imagen obtenida con el nombre minimos.png
     fprintf(p,"plot %f*x+(%f), 'min_cuadrados' with xyerrorbars \n",mr,br);	// Se plotea simultáneamente la línea que mejor
     								// se aproxima a nuestros puntos y también
-								// todos los puntos almacenados en min_cuadrados
-    
-    
+								// todos los puntos almacenados en min_cuadrados   
     pclose(p);				// Se cierra gnuplot y deja nuestra gráfica en pantalla
+    printf("\n");
+    printf("Se ha generado una gráfica con los datos obtenidos \n");
+    printf("La gráfica se encuentra en el archivo minimos.png \n");
+    
 }
 
 float m(float a[12][2]){		// Función para calcular m
