@@ -74,9 +74,7 @@ void gplot(){
     fprintf(p,"set grid\n");			// Cuadrícula para observar mejor los datos
     fprintf(p,"set term png \n");		// Defnimos la terminal como png, para crear un gráfico de los datos
     fprintf(p,"set key bottom right \n");	// Cambiamos la posición de key
-    fprintf(p,"set output 'biseccion.png' \n"); // La imagen obtenida se guarda con el nombre minimos.png
-    fprintf(p,"plot x**3-2*x**2-3*x+10 \n");	// Se plotea simultáneamente la línea que mejor
-						// se aproxima a nuestros puntos y también
-						// todos los puntos almacenados en min_cuadrados   
+    fprintf(p,"set output 'biseccion.png' \n"); // La imagen obtenida se guarda con el nombre biseccion.png
+    fprintf(p,"plot x**3-2*x**2-3*x+10 \n");	// Se plotea nuestra función dada
     pclose(p);				// Se cierra gnuplot
 }

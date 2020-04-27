@@ -57,7 +57,7 @@ void main(){
   
         int i=0;			
         while(i<12){    		// Se escribe en el archivo min_cuadrados cada punto (x,y) de "persona"
-            fprintf(pf,"%.2f  %.2f %.2f %.2f \n",persona[i][0],persona[i][1],0.1,0.1); //también añadimos incertezas
+            fprintf(pf,"%.2f  %.2f %.2f %.2f \n",persona[i][0],persona[i][1],0.00254,0.1); //también añadimos incertezas
             i++;			// El ciclo debe repetirse 12 veces, i+1 para que el ciclo avance
         } 
 
