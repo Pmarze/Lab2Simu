@@ -28,6 +28,7 @@ float persona[12][2]={{70,155},{63,150},{72,180},{60,135},{66,156},{70,168},{74,
 float conv[3][2]={{39.3701,0.0254},{3.2808,0.3048},{1.0936,0.9144}};	// Se selecciona la coordenada correcta
 
 void metros();		// Función para convertir nuestros datos de pulgadas a metros
+void Gnplot();      	// Función para crear gráficos en gnuplot
 float m();		// Función m para calcular la pendiente
 float b1();		// Función b1 para calcular sumatoria de y_i/12
 float b2();		// Función b2 para calcular sumatoria de x_i/12
@@ -64,21 +65,8 @@ void main(){
 	printf("%.2f \n",mr*n+br);		// ingresada por el usuario
     }
     fclose(pf);				// Se cierra el archivo min_cuadrados
-    	
-    FILE *p = popen("gnuplot","w");	// popen() permite trabajar en gnuplot, w para modo write,
-    					// *p es nuestro puntero de archivo
-  					// El comando fprintf(p,"..."); permite escribir comandos en gnuplot
-    fprintf(p,"reset \n");		// Borramos cualquier configuración previa que pudiera tener gnuplot
-    fprintf(p,"set title 'Minimos cuadrados' \n");		// Se define el título del gráfico
-    fprintf(p,"set xlabel 'Estatura (m)' \n");	// Se define el título del eje x
-    fprintf(p,"set ylabel 'Peso (Lb)' \n");	// Se define el título del eje y
-    fprintf(p,"set term png \n");		// Defnimos la terminal como png, para crear un gráfico de los datos
-    fprintf(p,"set key bottom right \n");	// Cambiamos la posición de key
-    fprintf(p,"set output 'minimos.png' \n");   // Guardamos la imagen obtenida con el nombre minimos.png
-    fprintf(p,"plot %f*x+(%f), 'min_cuadrados' with xyerrorbars \n",mr,br);	// Se plotea simultáneamente la línea que mejor
-    								// se aproxima a nuestros puntos y también
-								// todos los puntos almacenados en min_cuadrados   
-    pclose(p);				// Se cierra gnuplot y deja nuestra gráfica en pantalla
+    Gnplot();				// Se genera una gráfica con Gnuplot	
+
     printf("\n");
     printf("Se ha generado una gráfica con los datos obtenidos \n");
     printf("La gráfica se encuentra en el archivo minimos.png \n");
@@ -116,4 +104,22 @@ void metros(float a[12][2],float b[3][2]){	// Función para convertir unidades a
         float z=a[i][0]*b[0][1];		// Si se desea convertir a otra unidad solo se debe cambiar
         a[i][0]=z;				// el valor de la coordenada ej: m->yd  entonces escribimos b[2][0]
     }
+}
+
+void Gnplot(){
+    FILE *p = popen("gnuplot","w");	// popen() permite trabajar en gnuplot, w para modo write,
+    					// *p es nuestro puntero de archivo
+  					// El comando fprintf(p,"..."); permite escribir comandos en gnuplot
+    fprintf(p,"reset \n");		// Borramos cualquier configuración previa que pudiera tener gnuplot
+    fprintf(p,"set grid\n");    // Cuadrícula de la gráfica
+    fprintf(p,"set title 'Minimos cuadrados' \n");		// Se define el título del gráfico
+    fprintf(p,"set xlabel 'Estatura (m)' \n");	// Se define el título del eje x
+    fprintf(p,"set ylabel 'Peso (Lb)' \n");	// Se define el título del eje y
+    fprintf(p,"set term png \n");		// Defnimos la terminal como png, para crear un gráfico de los datos
+    fprintf(p,"set key bottom right \n");	// Cambiamos la posición de key
+    fprintf(p,"set output 'minimos.png' \n");   // Guardamos la imagen obtenida con el nombre minimos.png
+    fprintf(p,"plot %f*x+(%f), 'min_cuadrados' with xyerrorbars \n",mr,br);	// Se plotea simultáneamente la línea que mejor
+    								// se aproxima a nuestros puntos y también
+								// todos los puntos almacenados en min_cuadrados   
+    pclose(p);				// Se cierra gnuplot
 }
