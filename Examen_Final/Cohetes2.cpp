@@ -43,30 +43,24 @@ int main(){
         MK1=MK1+Mft;
         long double gt=g(y);
         long double roy=ro(y);
-        cout <<roy<<endl;
         long double Fay=Fa(roy,C1.GetCD(),C1.GetA(),v);
 
-        long double funcion1=C1.GetE0()-Fay-Mct*gt;
-        cout << "Funcion1:"<<funcion1<<endl;
+        long double funcion1=(C1.GetE0()-Fay-Mct*gt)/Mct;
         long double K1=K(h,funcion1);   
         
         Mft=Mf(t+0.5*h,C1.GetTSFC(),C1.GetE0());
         Mct=MK2+Mft;
         MK2=MK2+Mft;
         gt=g(y+0.5*K1);
-        cout << "valor:" << gt<<endl;
         roy=ro(y+0.5*K1);
-        cout << "roy:"<<roy<<endl;
         Fay=Fa(roy,C1.GetCD(),C1.GetA(),v);        
         
-        long double funcion2=C1.GetE0()-Fay-Mct*gt;
-        long double K2=K(h,funcion2);
-        
+        long double funcion2=(C1.GetE0()-Fay-Mct*gt)/Mct;
+        long double K2=K(t+0.5*h,funcion2);
         v=K1;
-        cout << v <<endl;
-
+ 
         y=y+K2; 
-        cout << y <<endl;
+
         
 
         cout << "\n" <<endl;
@@ -90,9 +84,6 @@ long double g(long double y){
 
 long double ro(long double y){
     double potencia=(g0/(R*L));
-    cout <<y<<endl;
-    cout << "potencia :"<<pow((1-((L*y)/T0)),potencia) <<endl;
-    cout << (1-((L*y)/T0)) << endl;
     return (P0/(R*T0))*pow((1-((L*y)/T0)),potencia);
 }
 
