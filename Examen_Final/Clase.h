@@ -1,23 +1,15 @@
-#ifndef USUARIOS_H
-#define USUARIOS_H
+#ifndef CLASE_H
+#define CLASE_H
 
 using namespace std;
 
 class Cohete{
     private:
-    double ejeCohete, TSFC, CD, A, m_0, m_f0;
+    double E0, TSFC, CD, A, m_0, m_f0;
     public:
     Cohete();
-    void SetCaracteristicas(double,double,double,double,double,double);
-/*
-    void SetejeCohete();
-    void SetTSFC();
-    void SetCD();
-    void SetA();
-    void Setm_0();
-    void Setm_f0();
-*/
-    double GetejeCohete();
+    void SetCaracteristicas(double,double,double,double,double,double);    
+    double GetE0();
     double GetTSFC();
     double GetCD();
     double GetA();
@@ -30,8 +22,8 @@ Cohete::Cohete(){       //Constructor
 
 }
 
-void Cohete::SetCaracteristicas(double _ejeCohete , double _TSFC,double _CD,double _A,double _m_0,double _m_f0){
-    ejeCohete=_ejeCohete;
+void Cohete::SetCaracteristicas(double _E0 , double _TSFC,double _CD,double _A,double _m_0,double _m_f0){
+    E0=_E0;
     TSFC=_TSFC;
     CD=_CD;
     A=_A;
@@ -39,8 +31,8 @@ void Cohete::SetCaracteristicas(double _ejeCohete , double _TSFC,double _CD,doub
     m_f0=_m_f0;
 }
 
-double Cohete::GetejeCohete(){
-    return ejeCohete;
+double Cohete::GetE0(){
+    return E0;
 }
 double Cohete::GetTSFC(){
     return TSFC;
@@ -59,7 +51,7 @@ double Cohete::Getm_f0(){
 }
 
 void prueba(){
-    cout<< "Si lee la libreria" <<endl;
+    cout<< "Si lee Clase.h" <<endl;
 }
 
 #endif
