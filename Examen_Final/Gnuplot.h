@@ -1,5 +1,5 @@
 #ifndef GPLOT_H
-#define GPLO_H
+#define GPLOT_H
 
 void gplot(){
     FILE *p = popen("gnuplot","w");	// popen() permite trabajar en gnuplot, w para modo write,
@@ -19,3 +19,5 @@ void gplot(){
     		
     pclose(p);				// Se cierra gnuplot
 }
+
+#endif
