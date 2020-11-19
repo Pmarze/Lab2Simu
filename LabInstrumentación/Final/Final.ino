@@ -16,10 +16,14 @@ int Seleccion=0;
 int ValINT=0;
 int ValDEC=0;
 int Setp=0;
+
 float Kp=6;
 float Kd=6.32;
 float Ki=1.44;
 
+long tiempo;
+long d;
+  
 void setup() {
   Serial.begin(9600);
   pinMode(Trigger, OUTPUT); 
@@ -40,11 +44,12 @@ void loop(){
       EstMensaje=1;
       Serial.println("Encendido");  
     }
-    
     BotonSETPOINT();
     BotonKPID(); 
-    Botonconfig();
-    
+    Botonconfig(); 
+    LeerSensor();
+  Serial.print("Distancia: ");
+  Serial.print(d);    
   }else{
     if(EstMensaje==1){
       EstMensaje=0;
@@ -168,4 +173,11 @@ void Botonconfig(){
     Serial.println(Kd);
   }
   delay(t);
+}
+void LeerSensor(){
+  digitalWrite(Trigger, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(Trigger, LOW);
+  tiempo = pulseIn(Echo, HIGH);
+  d = tiempo/59;    
 }
