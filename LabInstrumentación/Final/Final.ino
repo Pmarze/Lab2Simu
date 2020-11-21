@@ -17,9 +17,9 @@ int ValINT=0;
 int ValDEC=0;
 int Setp=5 ;
 
-float Kp=6;
-float Kd=6.32;
-float Ki=1.44;
+float Kp=3;
+float Kd=1.0;
+float Ki=1.5;
 
 unsigned long tiempoHC;
 unsigned long d;
@@ -51,7 +51,7 @@ void setup() {
 }
 
 void loop(){
-  CalibrarServo();
+//  CalibrarServo();
   BotonENCENDIDO();
   if(EstadoArd==1){
     if(EstMensaje==0){
@@ -63,13 +63,25 @@ void loop(){
     Botonconfig(); 
     LeerSensor();
     double datos = pidCalculo(Setp,d);
-    Serial.print("Datos PID ");
-    Serial.println( abs(datos));
-    //Mov.write(abs(datos));
-  }else{
+    double PIDvalor = datos/3;
+    double RESTA = PIDvalor+d;
+
+      Serial.println("Datos PID ");
+      Serial.print("PID ");
+      Serial.println(PIDvalor);
+      Serial.print("distancia ");
+      Serial.println(d);
+      Serial.print("RESTA ");
+      Serial.println(RESTA);
+      if (PIDvalor>5){
+        Serial.println("Máximo superado");
+      }else{
+        //Mov.write(PIDvalor*36);
+       }
+    }else{
     if(EstMensaje==1){
-      EstMensaje=0;
-      Serial.println("Apagado");  
+    EstMensaje=0;
+    Serial.println("Apagado");  
     } 
   }
 }
@@ -81,7 +93,7 @@ void BotonSETPOINT(){
     Serial.print("Seleccionar punto fijo: ");
     while(Seleccion==1){
         ValDEC = analogRead(A0);
-        ValDEC = map(ValDEC, 0, 1023, 0, 10);
+        ValDEC = map(ValDEC, 0, 1024, 0, 10);
         Setp=ValDEC;
         Serial.println(ValDEC);
         delay(t);
