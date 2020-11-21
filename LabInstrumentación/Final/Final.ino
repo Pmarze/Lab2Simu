@@ -15,14 +15,24 @@ int EstSelect =0;
 int Seleccion=0;
 int ValINT=0;
 int ValDEC=0;
-int Setp=0;
+int Setp=5 ;
 
 float Kp=6;
 float Kd=6.32;
 float Ki=1.44;
 
-long tiempo;
-long d;
+unsigned long tiempoHC;
+unsigned long d;
+unsigned long tiempo;
+unsigned long tAnterior;
+unsigned long tMuestreo;
+
+double proporcional;
+double integral;
+double derivativo;
+double error;
+double eAnterior;
+
   
 void setup() {
   Serial.begin(9600);
@@ -33,11 +43,15 @@ void setup() {
   pinMode(BENC,INPUT);
   pinMode(BSET,INPUT);
   digitalWrite(Trigger, LOW);
-  Mov.attach(5);
+  Mov.attach(5);  
   Serial.println("Inicio");
+  Serial.print("Calibrando servo");
+  CalibrarServo();
+  Serial.println("Calibrado");
 }
 
 void loop(){
+  CalibrarServo();
   BotonENCENDIDO();
   if(EstadoArd==1){
     if(EstMensaje==0){
@@ -48,8 +62,10 @@ void loop(){
     BotonKPID(); 
     Botonconfig(); 
     LeerSensor();
-  Serial.print("Distancia: ");
-  Serial.print(d);    
+    double datos = pidCalculo(Setp,d);
+    Serial.print("Datos PID ");
+    Serial.println( abs(datos));
+    //Mov.write(abs(datos));
   }else{
     if(EstMensaje==1){
       EstMensaje=0;
@@ -178,6 +194,36 @@ void LeerSensor(){
   digitalWrite(Trigger, HIGH);
   delayMicroseconds(10);
   digitalWrite(Trigger, LOW);
-  tiempo = pulseIn(Echo, HIGH);
-  d = tiempo/59;    
+  tiempoHC = pulseIn(Echo, HIGH);
+  d = tiempoHC/59;    
+}
+
+double pidCalculo(double setpoint, double retroalimentacion){
+  tiempo = millis();
+  tMuestreo = (tiempo-tAnterior);
+  error = setpoint - retroalimentacion;
+  proporcional = Kp*error;
+  derivativo = Kd*((error-eAnterior)/tMuestreo);
+  if (-4<error && error <4){
+    integral=integral + (Ki*error);
+  }else{
+    integral =0;
+  }
+  double resultado = proporcional + derivativo + integral;
+  eAnterior = error;
+  tAnterior = tiempo;
+  return resultado;
+}
+
+void CalibrarServo(){
+    Serial.print("...");
+    for (int i=1;i<17;i++){
+      Mov.write(i*10);
+      delay(100);
+    }
+    Serial.print("...");
+    for (int i=17;i>0;i--){
+      Mov.write(i*10);
+      delay(100);
+    }
 }
